@@ -457,6 +457,7 @@ module ChefConfig
     # Initialize openssl
     def self.init_openssl
       if openssl_fips
+        ChefConfig.logger.warn "The `openssl_fips` is still a work in progress. This feature is incomplete."
         OpenSSL.fips_mode = true
       end
     end
