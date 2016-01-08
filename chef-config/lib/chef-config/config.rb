@@ -27,7 +27,6 @@ require 'chef-config/windows'
 require 'chef-config/path_helper'
 require 'mixlib/shellout'
 require 'uri'
-require 'openssl'
 
 module ChefConfig
 
@@ -451,11 +450,14 @@ module ChefConfig
     # Where should chef-solo download recipes from?
     default :recipe_url, nil
 
+    # Set to true if Chef is to set OpenSSL to run in FIPS mode
+    default :openssl_fips, false
+
     # Sets the version of the signed header authentication protocol to use (see
     # the 'mixlib-authorization' project for more detail). Currently, versions
     # 1.0, 1.1, and 1.3 are available.
     default :authentication_protocol_version do
-      if OpenSSL::OPENSSL_FIPS
+      if openssl_fips
         "1.3"
       else
         "1.1"
