@@ -28,15 +28,19 @@ class Chef
 
       banner "knife data bag delete BAG [ITEM] (options)"
       category "data bag"
-
       def run
         if @name_args.length == 2
           delete_object(Chef::DataBagItem, @name_args[1], "data_bag_item") do
             rest.delete("data/#{@name_args[0]}/#{@name_args[1]}")
           end
         elsif @name_args.length == 1
-          delete_object(Chef::DataBag, @name_args[0], "data_bag") do
-            rest.delete("data/#{@name_args[0]}")
+          items = Chef::DataBag.load(@name_args[0])
+          if items.length > 0
+            ui.fatal("You cannot delete a data bag with #{items.length} items")
+          else
+            delete_object(Chef::DataBag, @name_args[0], "data_bag") do
+              rest.delete("data/#{@name_args[0]}")
+            end
           end
         else
           show_usage

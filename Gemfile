@@ -25,7 +25,7 @@ end
 group(:development, :test) do
 
   gem "simplecov"
-  gem 'rack', "~> 1.5.1"
+  #gem 'rack', "~> 1.5.1"
 
   # for testing new chefstyle rules
   # gem 'chefstyle', github: 'chef/chefstyle'
