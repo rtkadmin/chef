@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-require 'chef/mixin/shell_out'
+require "chef/mixin/shell_out"
 
 class Chef
   class Provider
@@ -102,7 +102,7 @@ class Chef
               if !new_resource.source.nil? && ::File.exist?(new_resource.source)
                 version_info = Chef::ReservedNames::Win32::File.version_info(new_resource.source)
                 file_version = version_info.FileVersion || version_info.ProductVersion
-                file_version == '' ? nil : file_version
+                file_version == "" ? nil : file_version
               else
                 nil
               end
@@ -113,13 +113,13 @@ class Chef
           def unattended_flags
             case installer_type
             when :installshield
-              '/s /sms'
+              "/s /sms"
             when :nsis
-              '/S /NCRC'
+              "/S /NCRC"
             when :inno
-              '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART'
+              "/VERYSILENT /SUPPRESSMSGBOXES /NORESTART"
             when :wise
-              '/s'
+              "/s"
             end
           end
         end

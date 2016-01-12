@@ -16,10 +16,10 @@
 # limitations under the License.
 #
 
-require 'chef/chef_fs/file_system/base_fs_dir'
-require 'chef/chef_fs/file_system/rest_list_entry'
-require 'chef/chef_fs/file_system/not_found_error'
-require 'chef/chef_fs/file_system/policy_group_entry'
+require "chef/chef_fs/file_system/base_fs_dir"
+require "chef/chef_fs/file_system/rest_list_entry"
+require "chef/chef_fs/file_system/not_found_error"
+require "chef/chef_fs/file_system/policy_group_entry"
 
 class Chef
   module ChefFS

@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-require 'chef/provider/package'
-require 'chef/resource/chocolatey_package'
-require 'chef/mixin/powershell_out'
+require "chef/provider/package"
+require "chef/resource/chocolatey_package"
+require "chef/mixin/powershell_out"
 
 class Chef
   class Provider
@@ -128,8 +128,8 @@ class Chef
               powershell_out!(
                 "[System.Environment]::GetEnvironmentVariable('ChocolateyInstall', 'MACHINE')"
               ).stdout.chomp,
-              'bin',
-              'choco.exe'
+              "bin",
+              "choco.exe"
           )
         end
 
@@ -219,7 +219,7 @@ class Chef
         def parse_list_output(*args)
           hash = {}
           choco_command(*args).stdout.each_line do |line|
-            name, version = line.split('|')
+            name, version = line.split("|")
             hash[name.downcase] = version.chomp
           end
           hash

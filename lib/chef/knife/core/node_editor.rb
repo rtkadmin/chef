@@ -16,9 +16,9 @@
 # limitations under the License.
 #
 
-require 'chef/json_compat'
-require 'chef/node'
-require 'tempfile'
+require "chef/json_compat"
+require "chef/node"
+require "tempfile"
 
 class Chef
   class Knife

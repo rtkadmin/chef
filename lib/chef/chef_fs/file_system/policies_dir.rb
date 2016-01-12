@@ -16,8 +16,8 @@
 # limitations under the License.
 #
 
-require 'chef/chef_fs/file_system/rest_list_dir'
-require 'chef/chef_fs/file_system/policy_revision_entry'
+require "chef/chef_fs/file_system/rest_list_dir"
+require "chef/chef_fs/file_system/policy_revision_entry"
 
 class Chef
   module ChefFS

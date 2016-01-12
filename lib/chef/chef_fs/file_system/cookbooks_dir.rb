@@ -16,14 +16,14 @@
 # limitations under the License.
 #
 
-require 'chef/chef_fs/file_system/rest_list_dir'
-require 'chef/chef_fs/file_system/cookbook_dir'
-require 'chef/chef_fs/file_system/operation_failed_error'
-require 'chef/chef_fs/file_system/cookbook_frozen_error'
-require 'chef/chef_fs/file_system/chef_repository_file_system_cookbook_dir'
-require 'chef/mixin/file_class'
+require "chef/chef_fs/file_system/rest_list_dir"
+require "chef/chef_fs/file_system/cookbook_dir"
+require "chef/chef_fs/file_system/operation_failed_error"
+require "chef/chef_fs/file_system/cookbook_frozen_error"
+require "chef/chef_fs/file_system/chef_repository_file_system_cookbook_dir"
+require "chef/mixin/file_class"
 
-require 'tmpdir'
+require "tmpdir"
 
 class Chef
   module ChefFS
@@ -42,7 +42,7 @@ class Chef
             if root.versioned_cookbooks
               result = []
               root.get_json("#{api_path}/?num_versions=all").each_pair do |cookbook_name, cookbooks|
-                cookbooks['versions'].each do |cookbook_version|
+                cookbooks["versions"].each do |cookbook_version|
                   result << CookbookDir.new("#{cookbook_name}-#{cookbook_version['version']}", self, :exists => true)
                 end
               end

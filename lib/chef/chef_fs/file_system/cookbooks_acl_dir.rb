@@ -16,8 +16,8 @@
 # limitations under the License.
 #
 
-require 'chef/chef_fs/file_system/acl_dir'
-require 'chef/chef_fs/file_system/acl_entry'
+require "chef/chef_fs/file_system/acl_dir"
+require "chef/chef_fs/file_system/acl_entry"
 
 class Chef
   module ChefFS

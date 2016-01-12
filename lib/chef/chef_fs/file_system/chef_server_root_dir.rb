@@ -16,28 +16,28 @@
 # limitations under the License.
 #
 
-require 'chef/server_api'
-require 'chef/chef_fs/file_system/acls_dir'
-require 'chef/chef_fs/file_system/base_fs_dir'
-require 'chef/chef_fs/file_system/rest_list_dir'
-require 'chef/chef_fs/file_system/cookbooks_dir'
-require 'chef/chef_fs/file_system/data_bags_dir'
-require 'chef/chef_fs/file_system/nodes_dir'
-require 'chef/chef_fs/file_system/org_entry'
-require 'chef/chef_fs/file_system/organization_invites_entry'
-require 'chef/chef_fs/file_system/organization_members_entry'
-require 'chef/chef_fs/file_system/policies_dir'
-require 'chef/chef_fs/file_system/policy_groups_dir'
-require 'chef/chef_fs/file_system/environments_dir'
-require 'chef/chef_fs/data_handler/acl_data_handler'
-require 'chef/chef_fs/data_handler/client_data_handler'
-require 'chef/chef_fs/data_handler/environment_data_handler'
-require 'chef/chef_fs/data_handler/node_data_handler'
-require 'chef/chef_fs/data_handler/role_data_handler'
-require 'chef/chef_fs/data_handler/user_data_handler'
-require 'chef/chef_fs/data_handler/group_data_handler'
-require 'chef/chef_fs/data_handler/container_data_handler'
-require 'chef/chef_fs/data_handler/policy_group_data_handler'
+require "chef/server_api"
+require "chef/chef_fs/file_system/acls_dir"
+require "chef/chef_fs/file_system/base_fs_dir"
+require "chef/chef_fs/file_system/rest_list_dir"
+require "chef/chef_fs/file_system/cookbooks_dir"
+require "chef/chef_fs/file_system/data_bags_dir"
+require "chef/chef_fs/file_system/nodes_dir"
+require "chef/chef_fs/file_system/org_entry"
+require "chef/chef_fs/file_system/organization_invites_entry"
+require "chef/chef_fs/file_system/organization_members_entry"
+require "chef/chef_fs/file_system/policies_dir"
+require "chef/chef_fs/file_system/policy_groups_dir"
+require "chef/chef_fs/file_system/environments_dir"
+require "chef/chef_fs/data_handler/acl_data_handler"
+require "chef/chef_fs/data_handler/client_data_handler"
+require "chef/chef_fs/data_handler/environment_data_handler"
+require "chef/chef_fs/data_handler/node_data_handler"
+require "chef/chef_fs/data_handler/role_data_handler"
+require "chef/chef_fs/data_handler/user_data_handler"
+require "chef/chef_fs/data_handler/group_data_handler"
+require "chef/chef_fs/data_handler/container_data_handler"
+require "chef/chef_fs/data_handler/policy_group_data_handler"
 
 class Chef
   module ChefFS
@@ -123,11 +123,11 @@ class Chef
         def org
           @org ||= begin
             path = Pathname.new(URI.parse(chef_server_url).path).cleanpath
-            if File.dirname(path) == '/organizations'
+            if File.dirname(path) == "/organizations"
               File.basename(path)
             else
               # In Chef 12, everything is in an org.
-              'chef'
+              "chef"
             end
           end
         end
@@ -148,7 +148,7 @@ class Chef
               # /roles
               RestListDir.new("roles", self, nil, Chef::ChefFS::DataHandler::RoleDataHandler.new)
             ]
-            if repo_mode == 'hosted_everything'
+            if repo_mode == "hosted_everything"
               result += [
                 # /acls
                 AclsDir.new("acls", self),
@@ -171,7 +171,7 @@ class Chef
                 # /policy_groups
                 PolicyGroupsDir.new("policy_groups", self, nil, Chef::ChefFS::DataHandler::PolicyGroupDataHandler.new),
               ]
-            elsif repo_mode != 'static'
+            elsif repo_mode != "static"
               result += [
                 # /clients
                 RestListDir.new("clients", self, nil, Chef::ChefFS::DataHandler::ClientDataHandler.new),
